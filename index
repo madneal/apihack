@@ -1,0 +1,10 @@
+var fs = require('fs');
+var cheerio = require('cheerio');
+
+var data = fs.readFileSync('vesselinfo.txt','utf-8');
+var result = [];
+$ = cheerio.load(data);
+$('option').each(function(i,elem) {
+	result.push('"'+$(this).attr('value')+'"');
+})
+fs.writeFile('1.txt',result);
